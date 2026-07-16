@@ -57,11 +57,12 @@ nav em { background: var(--green); color: white; border-radius: 999px; padding: 
 .section-heading { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 28px; }
 .section-heading h2 { font-size: 31px; margin: 5px 0 0; letter-spacing: -.045em; }
 .section-heading p { font-size: 12px; color: #7a867f; margin: 0 0 3px; }
-.filters { display: grid; grid-template-columns: repeat(4, 1fr) auto; align-items: end; gap: 12px; padding: 18px; background: white; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 8px 28px rgba(30,51,42,.04); }
+.filters { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)) auto; align-items: end; gap: 12px; padding: 18px; background: white; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 8px 28px rgba(30,51,42,.04); }
 .filters label { display: flex; flex-direction: column; gap: 7px; }
 .filters label span { color: #718078; font-size: 11px; font-weight: 700; }
-.filters select { width: 100%; height: 42px; appearance: none; border: 1px solid var(--line); border-radius: 8px; background-color: #fafbf9; background-image: linear-gradient(45deg, transparent 50%, #69786f 50%), linear-gradient(135deg, #69786f 50%, transparent 50%); background-position: calc(100% - 16px) 18px, calc(100% - 11px) 18px; background-size: 5px 5px; background-repeat: no-repeat; padding: 0 30px 0 12px; color: #33463b; font-size: 13px; outline: none; }
-.filters select:focus { border-color: var(--green); }
+.filters select, .filters input { width: 100%; height: 42px; border: 1px solid var(--line); border-radius: 8px; background-color: #fafbf9; padding: 0 12px; color: #33463b; font-size: 13px; outline: none; }
+.filters select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, #69786f 50%), linear-gradient(135deg, #69786f 50%, transparent 50%); background-position: calc(100% - 16px) 18px, calc(100% - 11px) 18px; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 30px; }
+.filters select:focus, .filters input:focus { border-color: var(--green); }
 .reset { height: 42px; padding: 0 17px; border: 1px solid var(--line); border-radius: 8px; background: white; color: #607068; font-size: 12px; cursor: pointer; }
 .reset:hover { color: var(--green); border-color: var(--green); }
 .result-bar { display: flex; justify-content: space-between; align-items: center; padding: 24px 2px 15px; color: #68766f; font-size: 12px; }
@@ -69,6 +70,8 @@ nav em { background: var(--green); color: white; border-radius: 999px; padding: 
 .result-bar div { display: flex; align-items: center; gap: 7px; }
 .live-dot { width: 7px; height: 7px; border-radius: 50%; background: #2ebd7f; box-shadow: 0 0 0 4px rgba(46,189,127,.12); }
 .card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.load-more { display: block; margin: 28px auto 0; min-width: 190px; height: 44px; border: 1px solid var(--green); border-radius: 999px; background: white; color: var(--green); font-weight: 750; cursor: pointer; }
+.load-more:hover { background: var(--green); color: white; }
 .price-card { position: relative; background: white; border: 1px solid var(--line); border-radius: 13px; overflow: hidden; transition: transform .2s, box-shadow .2s, border-color .2s; }
 .price-card:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(25,51,39,.09); border-color: #c7d5cd; }
 .watch { position: absolute; z-index: 3; top: 12px; right: 12px; width: 31px; height: 31px; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; background: rgba(255,255,255,.86); color: #53665b; font-size: 20px; line-height: 1; cursor: pointer; backdrop-filter: blur(5px); }
@@ -105,6 +108,8 @@ nav em { background: var(--green); color: white; border-radius: 999px; padding: 
 .price-row > div:first-child { display: flex; flex-direction: column; }
 .price-row span { color: #8a9690; font-size: 10px; }
 .price-row strong { font-size: 24px; letter-spacing: -.04em; margin-top: 2px; }
+.price-row .catalog-value { font-size: 17px; letter-spacing: -.02em; }
+.source-badge { color: #63756b; background: #edf3ef; border-radius: 4px; padding: 4px 7px; font-size: 10px; font-weight: 750; }
 .change { font-size: 11px; padding: 4px 7px; border-radius: 4px; margin-bottom: 3px; font-weight: 750; }
 .positive { color: #078357 !important; }
 .negative { color: #d2584d !important; }
@@ -116,6 +121,7 @@ nav em { background: var(--green); color: white; border-radius: 999px; padding: 
 .detail-link { width: 100%; padding: 12px 16px; border: 0; border-top: 1px solid #edf0ed; background: #fafbf9; text-align: left; color: #607168; font-size: 10px; cursor: pointer; }
 .detail-link span { float: right; color: var(--green); font-size: 14px; }
 .detail-link:hover { background: #f2f7e8; color: var(--green); }
+.detail-link.source-link { text-decoration: none; display: block; }
 .empty { padding: 80px 24px; text-align: center; background: white; border: 1px dashed #cbd6d0; border-radius: 13px; }
 .empty > span { font-size: 44px; color: #9caf9f; }
 .empty h3 { margin: 9px 0 3px; }
@@ -136,6 +142,7 @@ footer { background: #101a15; color: white; border-top: 1px solid rgba(255,255,2
 .footer-grid { min-height: 140px; display: grid; grid-template-columns: 220px 1fr auto; align-items: center; gap: 50px; }
 .footer-brand { color: white; }
 .footer-grid p { font-size: 11px; line-height: 1.8; color: #87948d; }
+.footer-grid p a { color: #bce94d; }
 .footer-grid > div:last-child { display: flex; flex-direction: column; gap: 5px; text-align: right; }
 .footer-grid > div:last-child strong { font-size: 11px; }
 .footer-grid > div:last-child span { color: #7f8d85; font-size: 10px; }
@@ -166,6 +173,9 @@ footer { background: #101a15; color: white; border-top: 1px solid rgba(255,255,2
 .modal-meta div { background: #f2f5f1; border-radius: 8px; padding: 11px; display: flex; flex-direction: column; gap: 3px; }
 .modal-meta span { color: #8a958f; font-size: 9px; }
 .modal-meta b { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.modal-source { display: inline-flex; align-items: center; margin-top: 18px; color: var(--green); font-size: 12px; font-weight: 750; text-decoration: none; }
+.modal-source:hover { text-decoration: underline; }
+.database-summary { margin-top: 22px; padding: 15px; border-radius: 10px; background: #f2f5f1; color: #607168; font-size: 12px; line-height: 1.7; }
 @keyframes fade { from { opacity: 0; } }
 @keyframes rise { from { opacity: 0; transform: translateY(12px) scale(.98); } }
 
