@@ -1,0 +1,13 @@
+{
+  "label": "演示成交数据",
+  "updatedAt": "2026-07-17T00:00:00+08:00",
+  "records": [
+    {"name":"皮卡丘 ex","setCode":"SV8","price":428,"change":12.6,"high":468,"low":356,"deals":86,"history":[352,368,361,389,402,397,415,421,418,428],"currency":"CNY","source":"demo"},
+    {"name":"喷火龙 ex","setCode":"SV4a","price":1280,"change":-3.2,"high":1460,"low":1198,"deals":34,"history":[1380,1420,1360,1348,1390,1322,1310,1298,1320,1280],"currency":"CNY","source":"demo"},
+    {"name":"莉莉艾的皮皮 ex","setCode":"SV9","price":760,"change":8.4,"high":820,"low":648,"deals":57,"history":[654,670,688,702,690,718,735,728,744,760],"currency":"CNY","source":"demo"},
+    {"name":"月亮伊布 VMAX","setCode":"S6a","price":6950,"change":4.8,"high":7280,"low":6380,"deals":12,"history":[6400,6510,6480,6650,6720,6840,6770,6880,7020,6950],"currency":"CNY","source":"demo"},
+    {"name":"美納斯 ex","setCode":"SV8","price":239,"change":18.3,"high":258,"low":182,"deals":102,"history":[184,190,198,207,204,216,222,228,234,239],"currency":"CNY","source":"demo"},
+    {"name":"梦幻 ex","setCode":"SV4a","price":698,"change":-1.7,"high":746,"low":650,"deals":48,"history":[720,708,716,730,710,702,715,706,700,698],"currency":"CNY","source":"demo"},
+    {"name":"沙奈朵 ex","setCode":"SV4a","price":365,"change":2.9,"high":392,"low":330,"deals":41,"history":[338,346,351,348,357,360,356,362,368,365],"currency":"CNY","source":"demo"}
+  ]
+}
