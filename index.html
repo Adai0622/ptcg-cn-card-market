@@ -9,52 +9,72 @@
   <meta property="og:description" content="全量卡牌资料检索与中国区成交价格参考。">
   <meta property="og:image" content="https://adai0622.github.io/ptcg-cn-card-market/assets/og.png">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="market-data-endpoint" content="data/market-prices.json">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <main>
-    <header class="site-header">
+    <header class="site-header" id="top">
       <div class="shell nav-row">
         <a class="brand" href="#top" aria-label="卡价站首页"><span class="brand-mark"><i></i></span><span>卡价<span>站</span></span></a>
-        <nav aria-label="主导航"><a class="active" href="#market">市场行情</a><a href="#watchlist">我的关注 <em id="watch-count">2</em></a><a href="#about">数据说明</a></nav>
-        <div class="region"><span></span> 中国区 · CNY</div>
-      </div>
-    </header>
-
-    <section class="hero" id="top">
-      <div class="shell hero-inner">
-        <div class="eyebrow"><span></span> PTCG 全量卡牌数据库</div>
-        <h1>查每一张卡的<br><strong>资料与成交价</strong></h1>
-        <p>按卡名、编号、系列或画师快速定位；卡牌资料来自 52Poké 公开数据库。</p>
         <div class="search-panel" role="search">
           <div class="main-search">
+            <span class="search-scope">简体中文 PTCG</span>
             <span class="search-icon" aria-hidden="true"></span>
             <input id="search-input" placeholder="搜索卡名、编号、系列或画师…" aria-label="搜索卡牌">
             <button class="clear-search" id="clear-search" aria-label="清空搜索" hidden>×</button>
-            <button class="search-button" id="search-button">查询卡牌</button>
+            <button class="search-button" id="search-button" aria-label="提交搜索">搜索</button>
           </div>
-          <div class="quick-tags"><span>热门搜索</span><button data-term="皮卡丘">皮卡丘</button><button data-term="喷火龙">喷火龙</button><button data-term="伊布">伊布</button><button data-term="SAR">SAR</button><button data-term="SV8">SV8</button></div>
         </div>
-        <div class="market-ticker" aria-label="今日市场概览">
-          <div><b id="database-count">—</b><span>全库卡牌</span></div><div><b id="cn-count">—</b><span>含简中发行</span></div><div><b class="up" id="artist-count">—</b><span>画师索引</span></div><small>资料同步时间<br><strong id="sync-time">读取中</strong></small>
+        <a class="header-watch" href="#watchlist">我的关注 <em id="watch-count">0</em></a>
+        <div class="region"><span></span> 中国区 · CNY</div>
+      </div>
+      <div class="category-bar">
+        <div class="shell category-row">
+          <nav aria-label="主导航"><a class="active" href="#market">卡牌市场</a><a href="#market">宝可梦</a><a href="#market">训练家</a><a href="#market">能量</a><a href="#watchlist">自选关注</a><a href="#about">数据说明</a></nav>
+          <span>资料库每日同步 · 价格仅供参考</span>
         </div>
       </div>
+    </header>
+
+    <section class="catalog-intro">
+      <div class="shell intro-row">
+        <div><span class="kicker">PTCG CARD MARKET</span><h1>卡牌行情与资料库</h1><p>快速筛选全量卡牌，查看已有市场记录的成交价。</p></div>
+        <div class="market-ticker" aria-label="资料库概览">
+          <div><b id="database-count">—</b><span>全库卡牌</span></div><div><b id="cn-count">—</b><span>含简中发行</span></div><div><b id="artist-count">—</b><span>画师索引</span></div><small>同步于 <strong id="sync-time">读取中</strong></small>
+        </div>
+      </div>
+      <div class="shell quick-tags"><span>热门搜索</span><button data-term="皮卡丘">皮卡丘</button><button data-term="喷火龙">喷火龙</button><button data-term="伊布">伊布</button><button data-term="SAR">SAR</button><button data-term="SV8">SV8</button></div>
     </section>
 
-    <section class="market shell" id="market">
-      <div class="section-heading"><div><span class="kicker">CARD DATABASE</span><h2>全量卡牌查询</h2></div><p>卡牌资料来自 52Poké；成交价格仅在已有市场记录时展示</p></div>
+    <section class="market" id="market">
       <div class="filters">
-        <label><span>分类</span><select id="kind-filter" aria-label="按卡牌分类筛选"></select></label>
-        <label><span>属性</span><select id="type-filter" aria-label="按属性筛选"></select></label>
-        <label><span>稀有度</span><select id="rarity-filter" aria-label="按稀有度筛选"></select></label>
-        <label><span>画师</span><input id="artist-filter" list="artist-options" aria-label="按画师筛选" placeholder="输入画师名"><datalist id="artist-options"></datalist></label>
-        <label><span>排序</span><select id="sort-filter" aria-label="排序"><option value="relevance">资料相关度</option><option value="name">卡名排序</option><option value="set">系列排序</option><option value="date">发行时间</option></select></label>
-        <button class="reset" id="reset-filters">重置筛选</button>
+        <div class="shell filter-row">
+          <span class="filter-title">全部筛选 <em id="active-filter-count">0</em></span>
+          <label><span>分类</span><select id="kind-filter" aria-label="按卡牌分类筛选"></select></label>
+          <label><span>属性</span><select id="type-filter" aria-label="按属性筛选"></select></label>
+          <label><span>系列</span><select id="series-filter" aria-label="按系列筛选"></select></label>
+          <label><span>稀有度</span><select id="rarity-filter" aria-label="按稀有度筛选"></select></label>
+          <label><span>语言</span><select id="language-filter" aria-label="按发行语言筛选"></select></label>
+          <label><span>成交数据</span><select id="market-filter" aria-label="按成交数据状态筛选"><option value="全部数据">全部数据</option><option value="有成交价">有成交价</option><option value="待补充">待补充</option></select></label>
+          <label class="artist-field"><span>画师</span><input id="artist-filter" list="artist-options" aria-label="按画师筛选" placeholder="输入画师名"><datalist id="artist-options"></datalist></label>
+          <button class="reset" id="reset-filters">清除筛选</button>
+        </div>
       </div>
-      <div class="result-bar"><span>找到 <strong id="result-count">0</strong> 张卡牌，当前显示 <strong id="visible-count">0</strong> 张</span><div><i class="live-dot"></i> 52Poké 公开资料库</div></div>
-      <div class="card-grid" id="card-grid"></div>
-      <button class="load-more" id="load-more" hidden>加载更多卡牌</button>
-      <div class="empty" id="empty-state" hidden><span>⌕</span><h3>暂未找到匹配卡牌</h3><p>可以尝试缩短关键词，或清除部分筛选条件。</p><button id="empty-reset">清除全部筛选</button></div>
+      <div class="shell result-toolbar">
+        <div class="result-summary"><strong><span id="result-count">0</span> 张卡牌</strong><span>当前显示 <span id="visible-count">0</span> 张</span><span class="data-status"><i></i><span id="market-status">成交数据接口已预留</span></span></div>
+        <div class="toolbar-actions">
+          <label>排序<select id="sort-filter" aria-label="排序"><option value="relevance">资料相关度</option><option value="date">最新发行</option><option value="price-high">价格从高到低</option><option value="price-low">价格从低到高</option><option value="deals">成交活跃度</option><option value="name">卡名排序</option><option value="set">系列排序</option></select></label>
+          <div class="view-switch" aria-label="切换展示方式"><button id="grid-view" class="active" aria-label="网格视图" title="网格视图">▦</button><button id="list-view" aria-label="列表视图" title="列表视图">☷</button></div>
+        </div>
+      </div>
+      <div class="results-surface">
+        <div class="shell">
+          <div class="card-grid" id="card-grid"></div>
+          <button class="load-more" id="load-more" hidden>加载更多卡牌</button>
+          <div class="empty" id="empty-state" hidden><span>⌕</span><h3>暂未找到匹配卡牌</h3><p>可以尝试缩短关键词，或清除部分筛选条件。</p><button id="empty-reset">清除全部筛选</button></div>
+        </div>
+      </div>
     </section>
 
     <section class="watch-strip" id="watchlist"><div class="shell watch-inner"><div><span>自选关注</span><h2>不错过你在意的价格变化</h2><p>点亮卡片右上角的星标，随时回来看它的最新行情。</p></div><div class="watch-stack" id="watch-stack"></div></div></section>
@@ -67,6 +87,7 @@
       <div id="modal-content"></div>
     </section>
   </div>
+  <script src="market-data.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
