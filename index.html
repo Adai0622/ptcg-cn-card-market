@@ -31,7 +31,7 @@
       </div>
       <div class="category-bar">
         <div class="shell category-row">
-          <nav aria-label="主导航"><a class="active" href="#market">卡牌市场</a><a href="#market">宝可梦</a><a href="#market">训练家</a><a href="#market">能量</a><a href="#watchlist">自选关注</a><a href="#about">数据说明</a></nav>
+          <nav aria-label="主导航"><a class="active" href="#market">卡牌市场</a><a href="#trends">行情走势</a><a href="#market">宝可梦</a><a href="#market">训练家</a><a href="#market">能量</a><a href="#watchlist">自选关注</a><a href="#about">数据说明</a></nav>
           <span>资料库每日同步 · 价格仅供参考</span>
         </div>
       </div>
@@ -45,6 +45,25 @@
         </div>
       </div>
       <div class="shell quick-tags"><span>热门搜索</span><button data-term="皮卡丘">皮卡丘</button><button data-term="喷火龙">喷火龙</button><button data-term="伊布">伊布</button><button data-term="SAR">SAR</button><button data-term="SV8">SV8</button></div>
+    </section>
+
+    <section class="stocks-section" id="trends" aria-labelledby="trends-title">
+      <div class="shell">
+        <div class="stocks-section-heading">
+          <div><h2 id="trends-title">市场走势</h2><p>像查看股票一样，快速对比简中大盘与热门单卡。</p></div>
+          <span><i></i> 演示行情 · CNY</span>
+        </div>
+        <div class="stocks-terminal" aria-live="polite">
+          <aside class="stocks-sidebar" aria-label="行情观察列表">
+            <div class="stocks-search-look"><span class="search-icon" aria-hidden="true"></span><span>大盘与单卡</span></div>
+            <div class="stocks-list" id="stocks-list"><div class="stocks-list-loading">正在载入行情…</div></div>
+            <div class="stocks-sidebar-foot"><span>卡价站行情</span><em>价格仅供参考</em></div>
+          </aside>
+          <div class="stocks-detail" id="stocks-detail">
+            <div class="stocks-detail-loading">正在计算市场走势…</div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="market" id="market">
